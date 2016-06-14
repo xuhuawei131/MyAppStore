@@ -23,7 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        initScreenFull();
+//        initScreenFull();
         super.onCreate(savedInstanceState);
         context=this;
         initData();

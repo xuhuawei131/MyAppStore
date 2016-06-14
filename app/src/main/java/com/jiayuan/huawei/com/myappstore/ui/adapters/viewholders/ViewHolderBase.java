@@ -1,6 +1,7 @@
 package com.jiayuan.huawei.com.myappstore.ui.adapters.viewholders;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -10,17 +11,16 @@ import android.view.View;
  * @author xuhuawei
  * @time $date$ $time$
  */
-public abstract class ViewHolderBase<T> {
+public abstract class ViewHolderBase<T> extends RecyclerView.ViewHolder {
     public View view;
-    public int position;
     protected Context context;
-    public abstract View getLayoutInfalerView();
     public abstract void findViewByIds();
     public abstract void bindData(int position,T obj);
 
-    public ViewHolderBase(Context context) {
-        this.context = context;
-        this.view=getLayoutInfalerView();
+    public ViewHolderBase(View view) {
+        super(view);
+        this.view = view;
+        this.context = view.getContext();
         findViewByIds();
     }
 
@@ -29,11 +29,6 @@ public abstract class ViewHolderBase<T> {
             throw new RuntimeException("getView is null!");
         }
         return view.findViewById(resId);
-    }
-
-    protected  View inflateViewById(int resource){
-        LayoutInflater inflater=LayoutInflater.from(context);
-        return inflater.inflate(resource, null);
     }
 
     protected void setOnClickListener(View view,int position){

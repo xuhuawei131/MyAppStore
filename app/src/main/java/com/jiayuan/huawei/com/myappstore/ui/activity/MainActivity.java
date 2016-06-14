@@ -9,6 +9,9 @@ import android.content.pm.PackageInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -16,6 +19,7 @@ import android.widget.ProgressBar;
 import com.jiayuan.huawei.com.myappstore.R;
 import com.jiayuan.huawei.com.myappstore.ui.activity.BaseActivity;
 import com.jiayuan.huawei.com.myappstore.ui.adapters.InstalledAdapter;
+import com.jiayuan.huawei.com.myappstore.ui.adapters.decorations.SpacesItemDecoration;
 import com.jiayuan.huawei.com.myappstore.ui.beans.AppLocalBean;
 import com.jiayuan.huawei.com.myappstore.ui.utils.Utils;
 
@@ -34,11 +38,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private List<AppLocalBean> arrayList;
     private InstalledAdapter adapter;
     @Bind(R.id.listView)
-    ListView listView;
+    RecyclerView listView;
 
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
 
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
     @Override
     protected void initData() {
         arrayList = new ArrayList<AppLocalBean>();
@@ -56,6 +62,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void findViewByIds() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        listView.setLayoutManager(manager);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(this, LinearLayoutManager.VERTICAL);
+        listView.addItemDecoration(decoration);
         listView.setAdapter(adapter);
     }
 
@@ -145,11 +159,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
             case R.id.layout_content:
                 AppLocalBean bean=arrayList.get(position);
-                if(bean.isShow){
-                    bean.isShow=false;
-                }else{
-                    bean.isShow=true;
-                }
+                bean.isShow = !bean.isShow;
                 adapter.notifyDataSetChanged();
                 break;
             case R.id.btn_open:
