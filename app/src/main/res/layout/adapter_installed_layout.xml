@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.jiayuan.huawei.com.myappstore.ui.customview.roundimage.RoundedImageView
+            android:id="@+id/image_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/default_item" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="15dip"
+            android:layout_marginTop="15dip"
+            android:layout_toRightOf="@+id/image_icon"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_name"
+                style="@style/adapter_top_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical" />
+
+            <TextView
+                android:id="@+id/text_version"
+                style="@style/adapter_top_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/text_packageName"
+                style="@style/adapter_top_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkred" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_operate"
+        android:layout_marginBottom="4dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_open"
+            style="@style/adapter_btn_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:text="打开" />
+
+        <Button
+            android:id="@+id/btn_shared"
+            style="@style/adapter_btn_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:text="分享" />
+
+        <Button
+            android:id="@+id/btn_uninstalled"
+            style="@style/adapter_btn_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:text="卸载" />
+    </LinearLayout>
+
+</LinearLayout>
